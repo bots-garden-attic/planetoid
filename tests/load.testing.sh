@@ -1,40 +1,10 @@
 #!/bin/bash
-message="updated"
 
-if [[ "$1" == "wip" ]]; then
-  message="🚧 WIP $2"
-fi
+url_api=$(gp url 8080)
+data='{"name":"Bob"}'
 
-if [[ "$1" == "save" ]]; then
-  message="📝 save $2"
-fi
 
-if [[ "$1" == "gardening" ]]; then
-  message="🌺 gardening $2"
-fi
+hey -n 10000 -c 1000 -m POST -T "Content-Type: application/json" -H "rwaapi_token:tada" -H "rwaapi_data:hello world" -d ${data} "${url_api}" 
 
-if [[ "$1" == "feature" ]]; then
-  message="✨ feature $2"
-fi
+# This opens 1000 connections, and sends 10000 requests. 
 
-if [[ "$1" == "doc" ]]; then
-  message="📝 update doc $2"
-fi
-
-if [[ "$1" == "fix" ]]; then
-  message="🐛 fix $2"
-fi
-
-if [[ "$1" == "config" ]]; then
-  message="🔧 config $2"
-fi
-
-if [[ "$1" == "docker" ]]; then
-  message="🐳 docker $2"
-fi
-
-if [[ "$1" == "tada" ]]; then
-  message="🎉 first commit $2"
-fi
-
-git add .; git commit -m "${message}"; git push
