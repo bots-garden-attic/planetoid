@@ -25,7 +25,13 @@ pub fn handle(parameters: String, headers: String) -> String {
   let request_headers: Headers = serde_json::from_str(&headers).unwrap();
 
   let message = Message {
-    text: format!("👋 Hello 🤖 {}  | token: {}", human.name, request_headers.rwaapi_data)
+    text: format!("👋 Hello from 🤖 {}  | token: {} data: {} function: {} {}", 
+      human.name, 
+      request_headers.rwaapi_token,
+      request_headers.rwaapi_data, 
+      request_headers.rwaapi_function_name, 
+      request_headers.rwaapi_function_version
+    )
   };
 
   return serde_json::to_string(&message).unwrap();
