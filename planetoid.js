@@ -32,14 +32,14 @@ const requestHandler = (request, response) => {
 }
 
 initializeWasm(`../functions/${wasmFile}`).then(() => {
-  console.log("🎉", handle)
+  //console.log("🎉", handle)
   const server = http.createServer(requestHandler)
 
   server.listen(port, (err) => {
     if (err) {
       return console.log('😡 something bad happened', err)
     }
-    console.log(`🌍 server is listening on ${port}`)
+    console.log(`🌍 serving ${functionName} ${functionVersion} on ${port}`)
   })
 }).catch(error => {
   console.error("😡", error)
